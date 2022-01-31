@@ -1,0 +1,35 @@
+{
+  "name": "pterodactylcontroller",
+  "version": "0.0.1",
+  "description": "Pterodactyl Controller makes controlling your pterodactyl server easier.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinPooters/PterodactylController.git"
+  },
+  "keywords": [
+    "Pterodactyl",
+    "Panel",
+    "Controller",
+    "NodeJs",
+    "Pterodactyl",
+    "Panel",
+    "Game",
+    "panel",
+    "minecraft",
+    "ark"
+  ],
+  "author": "Justin Pooters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JustinPooters/PterodactylController/issues"
+  },
+  "homepage": "https://github.com/JustinPooters/PterodactylController#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2"
+  }
+}

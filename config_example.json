@@ -1,0 +1,6 @@
+{
+    "pterodactylapiurl": "https://api.yourpterodactylpanel.com",
+    "apikey": "api_key",
+    "apisecret": "api_secret",
+    "appport": 1337
+}
