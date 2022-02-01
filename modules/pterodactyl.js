@@ -3,34 +3,64 @@ const axios = require('axios')
 const config = require("../config.json");
 const apiurl = config.endpoint;
 
-function api(endpoint) {
+async function api(endpoint, body) {
   var requesturl = apiurl + endpoint;
   console.log(requesturl)
-
-  axios.get(requesturl, {
-      headers: {
-        'Authorization': `Bearer ${config.apikey}`,
-        'Accept': 'application/json',
-        'Content-Type': "application/json"
-      }
-    })
-    .then(res => {
-      return res;
-    })
-    .catch(error => {
-      return error;
-    })
-
+  const response = await axios.get(requesturl, {
+    headers: {
+      'Authorization': `Bearer ${config.apikey}`,
+      'Accept': 'application/json',
+      'Content-Type': "application/json"
+    }
+  }).catch(error => { return error; })
+  return response.data.data;
 }
 
 async function getServers() {
+  let req = await api("application/servers");
+  console.log(req);
+}
 
-  const req = api("application/servers");
+async function getServerInfo(id) {
+  let req = await api(`application/servers/${id}`);
+  console.log(req);
+}
+
+async function startServer(serverid) {
+
+  let req = await api("application/servers");
   console.log(req);
 
 }
 
+async function stopServer(serverid) {
+
+  let req = await api("application/servers");
+  console.log(req);
+
+}
+
+async function killServer(serverid) {
+
+  let req = await api("application/servers");
+  console.log(req);
+
+}
+
+async function createServer(ram, storage, name, serverType) {
+
+  let req = await api("application/servers");
+  console.log(req);
+
+}
+
+
 module.exports = {
-  api: api,
-  getServers: getServers
+  api,
+  getServers,
+  getServerInfo,
+  startServer,
+  stopServer,
+  killServer,
+  createServer
 }
