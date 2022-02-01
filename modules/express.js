@@ -12,11 +12,40 @@ const port = config.appport;
 
 
 function load() {
+  var connection = mysql.createConnection({
+    host: config.dbhost,
+    user: config.dbuser,
+    password: config.dbpass,
+    database: config.database
+  });
+
   let servers = [];
+
+  app.use(session({
+    secret: config.secretpassphrase,
+    resave: true,
+    saveUninitialized: true
+  }));
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+  app.set('view engine', 'ejs');
+
   // index page
   app.get('/', function(req, res) {
-    res.render('pages/index');
-    servers = api.getServers();
+    res.render('pages/auth-login');
+  });
+
+  app.get('/home', function(req, res) {
+    if (req.session.loggedin) {
+      servers = api.getServers();
+      res.render('pages/index', {
+        server: servers
+      });
+
+    } else {
+      res.render('pages/notloggedin')
+    }
+
   });
 
   servers.forEach(server => {
@@ -27,8 +56,27 @@ function load() {
       });
     });
   });
+
+  app.post('/auth', function(request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
+    if (username && password) {
+      connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+        if (results.length > 0) {
+          request.session.loggedin = true;
+          request.session.username = username;
+          response.redirect('/home');
+        } else {
+          response.send('Incorrect Username and/or Password!');
+        }
+        response.end();
+      });
+    } else {
+      response.send('Please enter Username and Password!');
+      response.end();
+    }
+  });
   // Set EJHS view engine
-  app.set('view engine', 'ejs');
 
   // Start the webserver
   app.listen(port, () => {

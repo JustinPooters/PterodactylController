@@ -6,5 +6,6 @@
   "dbuser": "yourdatabaseuser",
   "dbport": 3389,
   "dbpass": "yourdatabasepassword",
-  "database": "yourdatabase"
+  "database": "yourdatabase",
+  "secretpassphrase": "supersecurerandompasswordthatyoudontneedtorememberunlessyouaremovingyourserver"
 }
