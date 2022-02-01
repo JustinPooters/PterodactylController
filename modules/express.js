@@ -1,6 +1,11 @@
 // Requirements
 const express = require('express');
+var mysql = require('mysql');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var path = require('path');
 const app = express();
+
 const config = require("../config.json");
 const api = require("./pterodactyl");
 const port = config.appport;

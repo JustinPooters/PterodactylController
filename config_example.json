@@ -1,5 +1,10 @@
 {
   "endpoint": "https://yourpanel.com/api/",
   "apikey": "adminapikey",
-  "appport": 1337
+  "appport": 1337,
+  "dbhost": "yourdatabaseserver",
+  "dbuser": "yourdatabaseuser",
+  "dbport": 3389,
+  "dbpass": "yourdatabasepassword",
+  "database": "yourdatabase"
 }
